@@ -1,5 +1,13 @@
+
+# All the vscode stuff
+.vscode
+.classpath
+.project
+.settings
+
 .gradle
 /build/
+/bin/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -12,3 +20,6 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+
+# Contains api key used to run tests
+settings.testing
