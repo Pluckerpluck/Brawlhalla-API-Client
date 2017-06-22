@@ -1,7 +1,7 @@
-package com.pluckerpluck.brawlhalla.client.types;
+package com.pluckerpluck.brawlhalla.client.REST;
 
 /**
- * BasicPlayer 
+ * BasicPlayer
  */
 public class BasicPlayer {
 

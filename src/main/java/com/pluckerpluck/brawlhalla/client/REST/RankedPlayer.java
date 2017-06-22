@@ -1,11 +1,10 @@
-package com.pluckerpluck.brawlhalla.client.types;
+package com.pluckerpluck.brawlhalla.client.REST;
 
 /**
- * BasicPlayer 
+ * BasicPlayer
  */
 public class RankedPlayer extends BasicPlayer {
 
-	private long rank;
 	private int best_legend;
 	private int best_legend_games;
 	private int best_legend_wins;
@@ -16,28 +15,31 @@ public class RankedPlayer extends BasicPlayer {
 	private int wins;
 	private String region;
 
-
-	public long getRank() {
-		return rank;
+	public int getBestLegend() {
+		return best_legend;
 	}
 
-	public PlayerLegend getBestLegend(){
-		return new PlayerLegend(best_legend, best_legend_games, best_legend_wins);
+	public int getBestLegendGames() {
+		return best_legend_games;
 	}
 
-	public int getRating(){
+	public int getBestLegendWins() {
+		return best_legend_wins;
+	}
+
+	public int getRating() {
 		return rating;
 	}
 
-	public int getPeakRating(){
+	public int getPeakRating() {
 		return peak_rating;
 	}
 
-	public String getTier(){
+	public String getTier() {
 		return tier;
 	}
 
-	public int getGames(){
+	public int getGames() {
 		return games;
 	}
 

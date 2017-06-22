@@ -3,10 +3,10 @@ package com.pluckerpluck.brawlhalla.client;
 import java.io.IOException;
 import java.util.List;
 
-import com.pluckerpluck.brawlhalla.client.types.BasicPlayer;
+import com.pluckerpluck.brawlhalla.client.REST.BasicPlayer;
 import com.pluckerpluck.brawlhalla.client.types.Bracket;
-import com.pluckerpluck.brawlhalla.client.BrawlhallaService;
-import com.pluckerpluck.brawlhalla.client.types.RankedPlayer;
+import com.pluckerpluck.brawlhalla.client.REST.BrawlhallaService;
+import com.pluckerpluck.brawlhalla.client.REST.LeaderboardPlayer;
 import com.pluckerpluck.brawlhalla.client.types.Region;
 
 import okhttp3.HttpUrl;
@@ -51,12 +51,11 @@ public class API {
 		});
 
 		OkHttpClient client = httpClient.build();
-		Retrofit retrofit = new Retrofit.Builder().baseUrl(baseURL)
-				.addConverterFactory(GsonConverterFactory.create()).client(client).build();
+		Retrofit retrofit = new Retrofit.Builder().baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create())
+				.client(client).build();
 
 		service = retrofit.create(BrawlhallaService.class);
 
-		
 	}
 
 	/**
@@ -66,22 +65,23 @@ public class API {
 		this(apiKey, API_BASE_URL);
 	}
 
-
-
 	public BasicPlayer search(String steamID) throws IOException {
 		Call<BasicPlayer> search = service.search(steamID);
 		return call(search);
 	}
 
-
-	public List<RankedPlayer> getRankingsPage(Bracket bracket, Region region, int page) throws IOException {
-		Call<List<RankedPlayer>> search = service.rankings(bracket, region, page, null);
+	public List<LeaderboardPlayer> getRankingsPage(Bracket bracket, Region region, int page, String name) throws IOException {
+		Call<List<LeaderboardPlayer>> search = service.rankings(bracket, region, page, name);
 		return call(search);
 	}
 
-	
+	public List<LeaderboardPlayer> getRankingsPage(Bracket bracket, Region region, int page) throws IOException {
+		return getRankingsPage(bracket, region, page, null);
+	}
+
 	private <T> T call(Call<T> call) throws IOException {
 		//System.out.println(call.execute().raw().toString());
+		// TODO: Rate limit
 		return call.execute().body();
 	}
 }

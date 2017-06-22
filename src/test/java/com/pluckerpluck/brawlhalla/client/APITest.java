@@ -6,8 +6,8 @@ import org.junit.BeforeClass;
  */
 import org.junit.Test;
 
-import com.pluckerpluck.brawlhalla.client.types.BasicPlayer;
-import com.pluckerpluck.brawlhalla.client.types.RankedPlayer;
+import com.pluckerpluck.brawlhalla.client.REST.BasicPlayer;
+import com.pluckerpluck.brawlhalla.client.REST.LeaderboardPlayer;
 import com.pluckerpluck.brawlhalla.client.types.Region;
 import com.pluckerpluck.brawlhalla.client.types.Bracket;
 
@@ -25,12 +25,11 @@ public class APITest {
 	private static API service;
 
 	@BeforeClass
-	public static void loadConfig() throws FileNotFoundException, IOException{
+	public static void loadConfig() throws FileNotFoundException, IOException {
 		Properties prop = new Properties();
 		InputStream input = new FileInputStream("settings.testing");
 
 		prop.load(input);
-		
 
 		String apiKey = prop.getProperty("apikey");
 
@@ -41,14 +40,16 @@ public class APITest {
 	@Test
 	public void testSearch() throws IOException {
 		BasicPlayer player = service.search("76561197999015527");
-		
+
 		assertEquals("Name check", "Pluckerpluck", player.getName());
 		assertEquals("ID check", 60248, player.getID());
 	}
 
 	@Test
 	public void testRankingsPage() throws IOException {
-		List<RankedPlayer> players = service.getRankingsPage(Bracket.ONE_VS_ONE, Region.EU, 1);
+		List<LeaderboardPlayer> players = service.getRankingsPage(Bracket.ONE_VS_ONE, Region.EU, 1);
 		assertEquals("Page size", 50, players.size());
 	}
+
+
 }

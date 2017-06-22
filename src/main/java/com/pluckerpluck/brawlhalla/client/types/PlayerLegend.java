@@ -1,7 +1,7 @@
 package com.pluckerpluck.brawlhalla.client.types;
 
 /**
- * Legend
+ * PlayerLegend
  */
 public class PlayerLegend {
 
